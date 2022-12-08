@@ -8,17 +8,28 @@ export const Layout = styled.main`
   align-items: center;
 
   height: 100vh;
-  padding: 80px 20px 40px;
+  padding: 0px 20px 40px;
+`;
+
+export const SnowballLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
 `;
 
 export const Footer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-
   width: 100%;
-
   max-width: 600px;
+
+  position: fixed;
+  padding: 0 20px;
+  bottom: 40px;
 `;
 
 export const Secondary = styled.div`

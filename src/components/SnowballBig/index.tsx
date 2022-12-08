@@ -1,6 +1,10 @@
-import * as S from "./Snowball.style";
+import * as S from "./SnowballBig.style";
 
-export const Snowball = () => {
+interface Props {
+  open?: number;
+}
+
+export const SnowballBig = ({ open = 7 }: Props) => {
   return (
     <S.Layout>
       <S.Snowfall>
@@ -12,9 +16,9 @@ export const Snowball = () => {
       </S.Snowfall>
 
       <svg
-        width="300"
-        height="300"
-        viewBox="0 100 1400 1400"
+        width="600"
+        height="600"
+        viewBox="100 100 1200 1200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -36,38 +40,49 @@ export const Snowball = () => {
             height="334"
             fill="url(#pattern1)"
           />
-          <rect
-            id="big"
-            x="717"
-            y="347"
-            width="388"
-            height="437"
-            fill="url(#pattern2)"
-          />
-          <rect
-            id="small"
-            x="292"
-            y="158"
-            width="406"
-            height="583"
-            fill="url(#pattern3)"
-          />
-          <rect
-            id="snowman"
-            x="436"
-            y="617"
-            width="231"
-            height="214"
-            fill="url(#pattern4)"
-          />
-          <rect
-            id="present"
-            x="757"
-            y="682"
-            width="154"
-            height="149"
-            fill="url(#pattern5)"
-          />
+          {open > 0 && (
+            <rect
+              id="big"
+              x="717"
+              y="347"
+              width="388"
+              height="437"
+              fill="url(#pattern2)"
+            />
+          )}
+
+          {open > 1 && (
+            <rect
+              id="small"
+              x="292"
+              y="158"
+              width="406"
+              height="583"
+              fill="url(#pattern3)"
+            />
+          )}
+
+          {open > 2 && (
+            <rect
+              id="snowman"
+              x="436"
+              y="617"
+              width="231"
+              height="214"
+              fill="url(#pattern4)"
+            />
+          )}
+
+          {open > 3 && (
+            <rect
+              id="present"
+              x="757"
+              y="682"
+              width="154"
+              height="149"
+              fill="url(#pattern5)"
+            />
+          )}
         </g>
         <defs>
           <pattern

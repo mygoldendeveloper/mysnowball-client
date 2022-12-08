@@ -1,14 +1,25 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { Text } from "components";
 import { Button } from "components/Button";
+
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import * as S from "styles/card";
 
 const CardCreate = ({ id }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
+
   const handlePrimaryButtonClick = () => {
     router.push(`/loading/${id}`);
+  };
+
+  const [card, setCard] = useState<string>("");
+
+  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCard(e.target.value);
   };
 
   return (
@@ -19,12 +30,22 @@ const CardCreate = ({ id }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <S.Layout>
-        <S.Footer>
-          <Button onClick={handlePrimaryButtonClick}>
-            스노우볼 선물 보내기
-          </Button>
-        </S.Footer>
+        <Text type="24-600">스노우볼에 메세지를 담아주세요.</Text>
+        <S.CardInput>
+          <S.TextareaWrap onClick={() => {}}>
+            <S.Textarea
+              maxLength={500}
+              onChange={handleTextareaChange}
+              disabled={false}
+              value={card}
+              placeholder="친구 스노우볼에 보낼 카드를 작성해주세요"
+            />
+          </S.TextareaWrap>
+        </S.CardInput>
       </S.Layout>
+      <S.Footer>
+        <Button onClick={handlePrimaryButtonClick}>스노우볼 선물 보내기</Button>
+      </S.Footer>
     </>
   );
 };

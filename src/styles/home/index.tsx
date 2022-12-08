@@ -5,6 +5,7 @@ export const Layout = styled.main`
   position: relative;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   height: 100vh;
 
@@ -14,11 +15,11 @@ export const Layout = styled.main`
 export const SnowballLayout = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   align-items: center;
+  gap: 40px;
 
   width: 100%;
-  margin: 80px 0 0 0;
 `;
 
 export const Title = styled.div`
@@ -26,7 +27,7 @@ export const Title = styled.div`
   position: relative;
 
   width: 100%;
-  aspect-ratio: 6 / 1;
+  aspect-ratio: 11 / 2;
 
   max-width: 600px;
 

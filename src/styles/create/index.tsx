@@ -11,6 +11,15 @@ export const Layout = styled.main`
   padding: 80px 20px 40px;
 `;
 
+export const SnowballLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+`;
+
 export const Footer = styled.div`
   display: flex;
   flex-direction: column;

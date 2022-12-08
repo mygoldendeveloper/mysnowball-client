@@ -4,26 +4,32 @@ export const Layout = styled.div`
   display: flex;
   position: relative;
   width: 100%;
+  max-width: 600px;
+
+  max-height: 600px;
 
   align-self: center;
 
   > svg {
+    position: absolute;
+    top: 100px;
     width: 100%;
+    max-width: 600px;
     aspect-ratio: 1 / 1;
   }
 `;
 
 export const Snowfall = styled.div`
   position: absolute;
-  width: calc(100% - 160px);
-  height: 160px;
+  width: calc(100% - 80px);
+  height: 400px;
   overflow: hidden;
   border-radius: 50%;
 
   .snowfall {
     position: absolute;
-    top: 80px;
-    left: 160px;
+    top: 440px;
+    left: 120px;
     z-index: 12;
     border-radius: 50%;
   }

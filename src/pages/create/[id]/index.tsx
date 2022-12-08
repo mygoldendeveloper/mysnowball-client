@@ -1,4 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
+import { SnowballBig } from "components";
 import { Button } from "components/Button";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
@@ -22,6 +23,9 @@ const SnowBallCreate = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <S.Layout>
+        <S.SnowballLayout>
+          <SnowballBig open={0} />
+        </S.SnowballLayout>
         <S.Footer>
           <Button onClick={handlePrimaryButtonClick}>스노우볼 만들기</Button>
         </S.Footer>
