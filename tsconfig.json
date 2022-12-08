@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+
+      "pages/*": ["src/pages/*"],
+      "foundations/*": ["src/foundations/*"],
+      "components/*": ["src/components/*"],
+      "containers/*": ["src/containers/*"],
+      "sections/*": ["src/sections/*"],
+      "layouts/*": ["src/layouts/*"],
+
+      "constants/*": ["src/constants/*"],
+      "models/*": ["src/models/*"],
+
+      "styles/*": ["src/styles/*"],
+      "styled/*": ["src/styled/*"],
+      "utils/*": ["src/utils/*"],
+      "hooks/*": ["src/hooks/*"],
+      "stores/*": ["src/stores/*"],
+      "services/*": ["src/services/*"],
+      "assets/*": ["src/assets/*"],
+      "types/*": ["src/types/*"],
+
+      "config/*": ["src/config/*"],
+      "data/*": ["src/data/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
