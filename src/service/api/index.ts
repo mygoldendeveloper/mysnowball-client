@@ -29,6 +29,7 @@ export const postSnowball = async (req: PostSnowReq) => {
 interface PostSnowCardReq {
   senderId: number;
   receiverId: number;
+  nickname: string;
   content: string;
 }
 

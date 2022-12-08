@@ -45,7 +45,7 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
         </Head>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <NextSeo title="씨식가 사장님" />
+            <NextSeo title="My Snowball" />
             <AppLayout>
               <Component {...pageProps} />
             </AppLayout>
