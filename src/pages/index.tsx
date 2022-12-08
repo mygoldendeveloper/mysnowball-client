@@ -4,14 +4,23 @@ import Header from "components/Header";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { authState, redirectUrlState } from "stores";
 
 import * as S from "styles/home";
 
 export default function Home() {
   const router = useRouter();
+  const user = useRecoilValue(authState);
+  const setRedirect = useSetRecoilState(redirectUrlState);
+
   const handlePrimaryButtonClick = () => {
-    router.push("/create/1");
-    // router.push("/login");
+    if (user.accessToken) {
+      router.push("/create");
+      return;
+    }
+    setRedirect("/create");
+    router.push("/login");
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Text } from "components";
 import { Button } from "components/Button";
 
@@ -6,21 +6,55 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { postSnowballCard } from "service/api";
+import { authState, redirectUrlState, userState } from "stores";
 
 import * as S from "styles/card";
 
+interface PostSnowCardReq {
+  senderId: number;
+  receiverId: number;
+  content: string;
+}
 const CardCreate = ({ id }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
-  const handlePrimaryButtonClick = () => {
-    router.push(`/loading/${id}`);
-  };
-
+  const user = useRecoilValue(userState);
+  const auth = useRecoilValue(authState);
+  const setRedirect = useSetRecoilState(redirectUrlState);
   const [card, setCard] = useState<string>("");
+
+  const PostPostMutation = useMutation(
+    (req: PostSnowCardReq) => postSnowballCard(req),
+    {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries(["GET_SNOWBALL", id]);
+        router.push(`/loading/${id}`);
+      },
+      onError: () => {},
+    }
+  );
 
   const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCard(e.target.value);
   };
+
+  const handlePrimaryButtonClick = () => {
+    PostPostMutation.mutate({
+      senderId: user.id || 999,
+      receiverId: parseInt(id),
+      content: card,
+    });
+  };
+
+  useEffect(() => {
+    if (!auth.accessToken) {
+      setRedirect("/create");
+      router.push("login");
+    }
+  });
 
   return (
     <>
@@ -32,7 +66,7 @@ const CardCreate = ({ id }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <S.Layout>
         <Text type="24-600">스노우볼에 메세지를 담아주세요.</Text>
         <S.CardInput>
-          <S.TextareaWrap onClick={() => {}}>
+          <S.TextareaWrap>
             <S.Textarea
               maxLength={500}
               onChange={handleTextareaChange}

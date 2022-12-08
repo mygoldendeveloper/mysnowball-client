@@ -15,14 +15,14 @@ export const Layout = styled.div`
 
 export const Snowfall = styled.div`
   position: absolute;
-  width: calc(100% - 160px);
+  width: calc(100% - 100px);
   height: 160px;
   overflow: hidden;
   border-radius: 50%;
 
   .snowfall {
     position: absolute;
-    top: 80px;
+    top: 0px;
     left: 160px;
     z-index: 12;
     border-radius: 50%;

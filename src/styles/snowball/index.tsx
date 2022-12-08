@@ -1,20 +1,23 @@
 import styled from "@emotion/styled";
+import { Text } from "components";
 
 export const Layout = styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 
   height: 100vh;
-  padding: 0px 20px 40px;
+  padding: 40px 20px 40px;
+`;
+
+export const Title = styled(Text)`
+  margin: 20px 0 0;
 `;
 
 export const SnowballLayout = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 
   width: 100%;

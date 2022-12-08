@@ -4,7 +4,6 @@ export const Layout = styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 
   height: 100vh;
@@ -18,6 +17,20 @@ export const SnowballLayout = styled.div`
   align-items: center;
 
   width: 100%;
+  > span {
+    align-self: start;
+
+    white-space: pre-wrap;
+  }
+`;
+
+export const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+
+  margin: 20px;
 `;
 
 export const Footer = styled.div`

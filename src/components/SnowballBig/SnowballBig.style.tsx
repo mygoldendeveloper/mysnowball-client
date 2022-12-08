@@ -12,7 +12,7 @@ export const Layout = styled.div`
 
   > svg {
     position: absolute;
-    top: 100px;
+
     width: 100%;
     max-width: 600px;
     aspect-ratio: 1 / 1;
@@ -21,15 +21,15 @@ export const Layout = styled.div`
 
 export const Snowfall = styled.div`
   position: absolute;
-  width: calc(100% - 80px);
-  height: 400px;
+  width: calc(100% - 40px);
+  height: 360px;
   overflow: hidden;
   border-radius: 50%;
 
   .snowfall {
     position: absolute;
-    top: 440px;
-    left: 120px;
+    top: 380px;
+    left: 40px;
     z-index: 12;
     border-radius: 50%;
   }

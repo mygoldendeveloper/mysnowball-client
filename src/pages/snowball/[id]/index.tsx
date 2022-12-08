@@ -1,9 +1,12 @@
-import { SnowballBig } from "components";
+import { SnowballBig, Text } from "components";
 import { Button } from "components/Button";
 import Header from "components/Header";
+import { useGetSnowball } from "hooks/queries";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { kakaoInit } from "service";
 
 import * as S from "styles/snowball";
 
@@ -11,14 +14,54 @@ const SnowBallPage = ({
   id,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
+
+  const { data, isError, isLoading } = useGetSnowball(id);
+
   const handlePrimaryButtonClick = () => {
     router.push(`/card/${id}`);
   };
   const handleCreateButtonClick = () => {
-    router.push(`/create/${id}`);
+    router.push(`/create`);
   };
-  const handleShareButtonClick = () => {};
 
+  const handleShareButtonClick = () => {
+    const kakao = kakaoInit();
+    kakao.Share.sendDefault({
+      objectType: "feed",
+      content: {
+        title: "내 스노우볼 꾸미기",
+        description:
+          "크리스마스까지 친구들이 나의 스노우볼에 메세지를 남겨드려요",
+        imageUrl:
+          "https://user-images.githubusercontent.com/74908906/206517360-0341a9db-d26a-449a-9742-2022de667986.png",
+        link: {
+          mobileWebUrl: "https://developers.kakao.com",
+          webUrl: "https://developers.kakao.com",
+        },
+      },
+
+      buttons: [
+        {
+          title: "친구 꾸며주기",
+          link: {
+            mobileWebUrl: "https://developers.kakao.com",
+            webUrl: "https://developers.kakao.com",
+          },
+        },
+        {
+          title: "내꺼 만들기",
+          link: {
+            mobileWebUrl: "https://developers.kakao.com",
+            webUrl: "https://developers.kakao.com",
+          },
+        },
+      ],
+    });
+  };
+
+  if (isLoading || isError) {
+    return <></>;
+  }
   return (
     <>
       <Head>
@@ -29,9 +72,11 @@ const SnowBallPage = ({
       <Header />
       <S.Layout>
         <S.SnowballLayout>
-          <SnowballBig open={4} />
+          <SnowballBig open={data.length || 0} />
         </S.SnowballLayout>
+        <S.Title type="24-600">핵스티벌 스노우볼</S.Title>
       </S.Layout>
+
       <S.Footer>
         <Button onClick={handlePrimaryButtonClick}>
           친구 스노우볼 꾸며주기
