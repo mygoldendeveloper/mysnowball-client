@@ -7,7 +7,7 @@ export const Layout = styled.main`
   flex-direction: column;
   align-items: center;
 
-  height: 100vh;
+  height: 90vh;
   padding: 40px 20px 40px;
 `;
 
