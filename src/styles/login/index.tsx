@@ -6,22 +6,31 @@ export const Layout = styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
+  gap: 20px;
 
-  justify-content: center;
+  align-items: center;
 
+  margin: 80px 20px 40px;
   height: 100vh;
 `;
 
 export const WaitingLottie = styled(Lottie)`
-  width: 350px;
-  height: 240px;
-  align-self: center;
+  width: 500px;
+  height: 320px;
 `;
 
-export const Title = styled(Text)`
-  position: fixed;
-  padding: 0 20px;
-  top: 40px;
+export const Title = styled.div`
+  display: flex;
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 4 / 1;
+
+  max-width: 600px;
+
+  > svg {
+    width: 100px;
+  }
 `;
 
 export const Footer = styled.div`

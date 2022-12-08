@@ -4,23 +4,55 @@ import * as S from "styles/login";
 
 import KakaoLoginButton from "components/KakaoButton";
 import { kakaoInit } from "service";
-import { useSetRecoilState } from "recoil";
-import { authState, userState } from "stores";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { authState, redirectUrlState, userState } from "stores";
 import Header from "components/Header";
+import Image from "next/image";
+import { Text } from "components";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
+  const redirectUrl = useRecoilValue(redirectUrlState);
   const setAuth = useSetRecoilState(authState);
   const setUser = useSetRecoilState(userState);
 
+  const kakaoFriend = async () => {
+    const kakao = kakaoInit();
+    console.log("friend");
+
+    kakao.Auth.authorize({
+      redirectUri: "http://localhost:3000/login",
+      scope: "friends",
+    }).then((res: any) => {
+      console.log(res);
+    });
+  };
+
+  const kakaoFriends = async () => {
+    const kakao = kakaoInit();
+
+    kakao.API.request({
+      url: "/v1/api/talk/friends",
+    })
+      .then(function (response: any) {
+        console.log(response);
+      })
+      .catch(function (error: any) {
+        console.log(error);
+      });
+  };
+
   const kakaoLogin = async () => {
     const kakao = kakaoInit();
+
     kakao.Auth.login({
       success: (res: any) => {
         setAuth({
           accessToken: res.access_token as string,
           refreshToken: res.refresh_token as string,
         });
-
+        // kakaoFriend();
         kakao.API.request({
           url: "/v2/user/me",
         })
@@ -29,6 +61,8 @@ export default function Login() {
               id: response.id as number,
               nickname: response.kakao_account.profile.nickname as string,
             });
+            // kakaoFriend();
+            router.push(redirectUrl);
           })
           .catch(function (error: any) {
             console.log(error);
@@ -50,8 +84,16 @@ export default function Login() {
       <Header />
 
       <S.Layout>
-        <S.Title type="24-600">나만의 스노우볼을 만들어봐요.</S.Title>
-
+        <S.Title>
+          <Image
+            src="/images/title.png"
+            alt="제목"
+            objectFit="contain"
+            layout="fill"
+            priority
+          ></Image>
+        </S.Title>
+        <Text type="24-600">나만의 스노우볼을 만들어봐요.</Text>
         <S.WaitingLottie loop autoplay animationData={loadingLottieFile} />
         <S.Footer>
           <KakaoLoginButton onClick={() => kakaoLogin()} />

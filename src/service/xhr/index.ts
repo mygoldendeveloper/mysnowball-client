@@ -2,7 +2,6 @@ import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const apiClient = Axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-  timeout: 5000,
 });
 
 export const apiRequest = {
@@ -21,8 +20,9 @@ apiClient.interceptors.request.use((config) => {
     accessToken: undefined,
     refreshToken: undefined,
   };
-  if (localStorage !== null) {
-    token = JSON.parse(localStorage.getItem("vinish") || "");
+  if (sessionStorage !== null) {
+    token = JSON.parse(sessionStorage.getItem("authState") || "").authState
+      .accessToken;
   }
   if (token && config && config.headers) {
     config.headers.Authorization = `Bearer ${token.accessToken}`;
