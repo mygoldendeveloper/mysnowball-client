@@ -1,27 +1,14 @@
 import styled from "@emotion/styled";
-import { Text } from "components";
-import Lottie from "components/Lottie";
 
 export const Layout = styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
-
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 
   height: 100vh;
-`;
-
-export const WaitingLottie = styled(Lottie)`
-  width: 350px;
-  height: 240px;
-  align-self: center;
-`;
-
-export const Title = styled(Text)`
-  position: fixed;
-  padding: 0 20px;
-  top: 40px;
+  padding: 80px 20px 40px;
 `;
 
 export const Footer = styled.div`
@@ -35,4 +22,12 @@ export const Footer = styled.div`
 
   width: 100%;
   max-width: 600px;
+`;
+
+export const Secondary = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  gap: 12px;
 `;

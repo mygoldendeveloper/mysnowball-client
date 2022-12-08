@@ -31,7 +31,7 @@ export const KakaoLoginButton = ({ ...rest }: KakaoLoginButtonProps) => {
         </g>
       </svg>
       <span>
-        카카오로 <b>1초 만에</b> 만들기
+        카카오로 <b>1초 만에</b> 로그인
       </span>
       <S.EmptyBox />
     </S.Button>
