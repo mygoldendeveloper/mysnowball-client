@@ -1,3 +1,4 @@
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { SnowballBig, Text } from "components";
 import { Button } from "components/Button";
 import Header from "components/Header";
@@ -11,6 +12,7 @@ import { useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { kakaoInit } from "service";
 import { getSnowball } from "service/api";
+
 import { modalState, userState } from "stores";
 
 import * as S from "styles/snowball";
@@ -24,10 +26,12 @@ const SnowBallPage = ({
 
   const { data, isError, isLoading } = useGetSnowball(id);
   const { hasSnowball } = useSnowball();
+
   const setModalStatus = useSetRecoilState(modalState);
   const handlePrimaryButtonClick = async () => {
     router.push(`/card/${id}`);
   };
+
   const handleCreateButtonClick = () => {
     if (hasSnowball) {
       router.push(`/snowball/${user.id}`);
@@ -138,13 +142,16 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 });
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  // const queryClient = new QueryClient();
+  const queryClient = new QueryClient();
   const id = context.params?.id as string;
+
+  await queryClient.prefetchQuery(["GET_SNOWBALL", id], () => getSnowball(id));
 
   return {
     props: {
       id,
-      // dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
+    revalidate: 1,
   };
 };

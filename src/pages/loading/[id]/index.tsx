@@ -1,3 +1,4 @@
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { Text } from "components";
 import { useGetSnowball } from "hooks/queries";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
@@ -5,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { getSnowball } from "service/api";
 
 import * as S from "styles/loading";
 
@@ -94,13 +96,16 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 });
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  // const queryClient = new QueryClient();
+  const queryClient = new QueryClient();
   const id = context.params?.id as string;
+
+  await queryClient.prefetchQuery(["GET_SNOWBALL", id], () => getSnowball(id));
 
   return {
     props: {
       id,
-      // dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
+    revalidate: 1,
   };
 };

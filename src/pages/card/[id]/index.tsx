@@ -1,4 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  dehydrate,
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { Text } from "components";
 import { Button } from "components/Button";
 import Input from "components/Input";
@@ -8,7 +13,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { postSnowballCard } from "service/api";
+import { getSnowball, postSnowballCard } from "service/api";
 import { authState, redirectUrlState, userState } from "stores";
 
 import * as S from "styles/card";
@@ -110,13 +115,16 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 });
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  // const queryClient = new QueryClient();
+  const queryClient = new QueryClient();
   const id = context.params?.id as string;
+
+  await queryClient.prefetchQuery(["GET_SNOWBALL", id], () => getSnowball(id));
 
   return {
     props: {
       id,
-      // dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
+    revalidate: 1,
   };
 };
