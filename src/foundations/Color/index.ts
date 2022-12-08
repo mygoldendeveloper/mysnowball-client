@@ -6,19 +6,23 @@ export enum BaseColorKey {
 
   // color
   Blue = "blue",
+  Green = "green",
 }
 
 export type BaseColor = "gray" | "blue";
 
 type GrayColorRange = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800;
 type BlueColorRange = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800;
+type GreenColorRange = 200 | 400 | 600 | 800;
 
 type GrayColorKey =
   | `${BaseColorKey.Gray}${GrayColorRange}`
   | `${BaseColorKey.White}`
   | `${BaseColorKey.Black}`;
 
-type ColorfulColorKey = `${BaseColorKey.Blue}${BlueColorRange}`;
+type ColorfulColorKey =
+  | `${BaseColorKey.Blue}${BlueColorRange}`
+  | `${BaseColorKey.Green}${GreenColorRange}`;
 
 export type ColorKey = ColorfulColorKey | GrayColorKey;
 
@@ -47,6 +51,11 @@ export const Color: ColorType = {
   blue600: "#2272eb",
   blue700: "#1b64da",
   blue800: "#1957c2",
+  // Blue
+  green200: "#7FBB6C",
+  green400: "#5C904B",
+  green600: "#417530",
+  green800: "#265218",
 };
 
 export const colorList: ColorKey[] = Object.keys(Color) as ColorKey[];
