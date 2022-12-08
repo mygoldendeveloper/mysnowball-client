@@ -1,10 +1,30 @@
+import { useGetSnowball } from "hooks/queries";
+import { useSetRecoilState } from "recoil";
+import { modalState } from "stores";
 import * as S from "./SnowballBig.style";
 
 interface Props {
   open?: number;
+  id?: string;
+  isClickable?: boolean;
 }
 
-export const SnowballBig = ({ open = 7 }: Props) => {
+export const SnowballBig = ({ open = 7, isClickable = false, id }: Props) => {
+  const { data, isError, isLoading } = useGetSnowball(id || "");
+
+  const setModalStatus = useSetRecoilState(modalState);
+
+  const onClickItem = (id: number) => {
+    if (!isClickable) {
+      return;
+    }
+
+    setModalStatus({
+      status: true,
+      content: data[id],
+    });
+  };
+
   return (
     <S.Layout>
       <S.Snowfall>
@@ -18,7 +38,7 @@ export const SnowballBig = ({ open = 7 }: Props) => {
       <svg
         width="600"
         height="600"
-        viewBox="100 100 1200 1200"
+        viewBox="100 300 1200 1200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -48,6 +68,9 @@ export const SnowballBig = ({ open = 7 }: Props) => {
               width="388"
               height="437"
               fill="url(#pattern2)"
+              onClick={() => {
+                onClickItem(1);
+              }}
             />
           )}
 
@@ -59,6 +82,9 @@ export const SnowballBig = ({ open = 7 }: Props) => {
               width="406"
               height="583"
               fill="url(#pattern3)"
+              onClick={() => {
+                onClickItem(2);
+              }}
             />
           )}
 
@@ -70,6 +96,9 @@ export const SnowballBig = ({ open = 7 }: Props) => {
               width="231"
               height="214"
               fill="url(#pattern4)"
+              onClick={() => {
+                onClickItem(3);
+              }}
             />
           )}
 
@@ -81,6 +110,9 @@ export const SnowballBig = ({ open = 7 }: Props) => {
               width="154"
               height="149"
               fill="url(#pattern5)"
+              onClick={() => {
+                onClickItem(4);
+              }}
             />
           )}
         </g>

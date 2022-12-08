@@ -18,9 +18,12 @@ export const Title = styled(Text)`
 export const SnowballLayout = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
+
   align-items: center;
 
   width: 100%;
+  margin: 100px;
 `;
 
 export const Footer = styled.div`
