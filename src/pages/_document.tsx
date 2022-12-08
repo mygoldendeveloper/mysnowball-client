@@ -9,6 +9,7 @@ const Document = () => (
         as="style"
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css"
       />
+      <script async src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     </Head>
     <body>
       <Main />

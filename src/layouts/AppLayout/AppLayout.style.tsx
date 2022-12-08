@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Theme } from "foundations";
 
 export const App = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ export const Layout = styled.div`
   flex-direction: column;
 
   width: 100%;
-  height: 100%;
+  height: 100vh;
   max-width: 600px;
-  background: #f9fafb;
+  background: ${Theme.color.gray100};
 `;
