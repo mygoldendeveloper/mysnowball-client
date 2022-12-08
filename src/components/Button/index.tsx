@@ -1,19 +1,24 @@
+import { Text } from "components/Text";
+import { Color, ColorKey } from "foundations";
 import { forwardRef, HTMLAttributes, Ref } from "react";
 
 import * as S from "./Button.style";
 
-export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
-  color?: string;
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  color?: ColorKey;
 }
 
 export const Button = forwardRef(function Badge(
   props: ButtonProps,
-  forwardedRef: Ref<HTMLDivElement>
+  forwardedRef: Ref<HTMLButtonElement>
 ) {
   const { children, ...rest } = props;
+
   return (
     <S.Layout ref={forwardedRef} {...rest}>
-      {children}
+      <Text type="16-600" color="white">
+        {children}
+      </Text>
     </S.Layout>
   );
 });
