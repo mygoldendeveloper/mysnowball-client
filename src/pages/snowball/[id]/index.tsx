@@ -51,8 +51,8 @@ const SnowBallPage = ({
         imageUrl:
           "https://user-images.githubusercontent.com/74908906/206517360-0341a9db-d26a-449a-9742-2022de667986.png",
         link: {
-          mobileWebUrl: "https://developers.kakao.com",
-          webUrl: "https://developers.kakao.com",
+          mobileWebUrl: `https://mysnowball.me/snowball/${id}`,
+          webUrl: `https://mysnowball.me/snowball/${id}`,
         },
       },
 
@@ -60,15 +60,15 @@ const SnowBallPage = ({
         {
           title: "친구 꾸며주기",
           link: {
-            mobileWebUrl: "https://developers.kakao.com",
-            webUrl: "https://developers.kakao.com",
+            mobileWebUrl: `https://mysnowball.me/snowball/${id}`,
+            webUrl: `https://mysnowball.me/snowball/${id}`,
           },
         },
         {
           title: "내꺼 만들기",
           link: {
-            mobileWebUrl: "https://developers.kakao.com",
-            webUrl: "https://developers.kakao.com",
+            mobileWebUrl: "https://mysnowball.me/create",
+            webUrl: "https://mysnowball.me/create",
           },
         },
       ],
