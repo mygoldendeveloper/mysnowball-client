@@ -5,7 +5,7 @@ export const Layout = styled.main`
   position: relative;
   flex-direction: column;
   gap: 20px;
-  height: 100vh;
+  height: 90vh;
   padding: 80px 20px 40px;
 `;
 

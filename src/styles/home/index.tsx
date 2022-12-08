@@ -7,7 +7,7 @@ export const Layout = styled.main`
   align-items: center;
   justify-content: center;
 
-  height: 100vh;
+  height: 90vh;
 
   padding: 20px;
 `;

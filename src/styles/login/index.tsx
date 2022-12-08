@@ -11,7 +11,7 @@ export const Layout = styled.main`
   align-items: center;
 
   margin: 80px 20px 40px;
-  height: 100vh;
+  height: 90vh;
 `;
 
 export const WaitingLottie = styled(Lottie)`
